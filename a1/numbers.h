@@ -19,10 +19,7 @@ unsigned int digit_at(unsigned int number, unsigned int digit_idx){
 }
 
 struct bits8 bits8_not(struct bits8 a){
-    struct bits8 c = {
-            {false},{false},{false},{false},
-            {false},{false},{false},{false}
-    };
+    struct bits8 c;
     c.b0 = bit_not(a.b0);
     c.b1 = bit_not(a.b1);
     c.b2 = bit_not(a.b2);
@@ -37,10 +34,7 @@ struct bits8 bits8_not(struct bits8 a){
 //########### helper functions end ##########
 
 struct bits8 bits8_from_int(unsigned int x){
-    struct bits8 c = {
-            {false},{false},{false},{false},
-            {false},{false},{false},{false}
-    };
+    struct bits8 c;
     c.b0.v = digit_at(x,0)==1;
     c.b1.v = digit_at(x,1)==1;
     c.b2.v = digit_at(x,2)==1;
