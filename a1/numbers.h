@@ -35,51 +35,6 @@ struct bits8 bits8_not(struct bits8 a){
     return c;
 }
 
-struct bits8 bits8_and(struct bits8 a, struct bits8 b){
-    struct bits8 c = {
-            {false},{false},{false},{false},
-            {false},{false},{false},{false}
-    };
-    c.b0 = bit_and(a.b0, b.b0);
-    c.b1 = bit_and(a.b1, b.b1);
-    c.b2 = bit_and(a.b2, b.b2);
-    c.b3 = bit_and(a.b3, b.b3);
-    c.b4 = bit_and(a.b4, b.b4);
-    c.b5 = bit_and(a.b5, b.b5);
-    c.b6 = bit_and(a.b6, b.b6);
-    c.b7 = bit_and(a.b7, b.b7);
-    return c;
-}
-struct bits8 bits8_or(struct bits8 a, struct bits8 b){
-    struct bits8 c = {
-            {false},{false},{false},{false},
-            {false},{false},{false},{false}
-    };
-    c.b0 = bit_or(a.b0, b.b0);
-    c.b1 = bit_or(a.b1, b.b1);
-    c.b2 = bit_or(a.b2, b.b2);
-    c.b3 = bit_or(a.b3, b.b3);
-    c.b4 = bit_or(a.b4, b.b4);
-    c.b5 = bit_or(a.b5, b.b5);
-    c.b6 = bit_or(a.b6, b.b6);
-    c.b7 = bit_or(a.b7, b.b7);
-    return c;
-}
-struct bits8 bits8_xor(struct bits8 a, struct bits8 b){
-    struct bits8 c = {
-            {false},{false},{false},{false},
-            {false},{false},{false},{false}
-    };
-    c.b0 = bit_xor(a.b0, b.b0);
-    c.b1 = bit_xor(a.b1, b.b1);
-    c.b2 = bit_xor(a.b2, b.b2);
-    c.b3 = bit_xor(a.b3, b.b3);
-    c.b4 = bit_xor(a.b4, b.b4);
-    c.b5 = bit_xor(a.b5, b.b5);
-    c.b6 = bit_xor(a.b6, b.b6);
-    c.b7 = bit_xor(a.b7, b.b7);
-    return c;
-}
 //########### helper functions end ##########
 
 struct bits8 bits8_from_int(unsigned int x){
@@ -162,10 +117,11 @@ struct bits8 bits8_add(struct bits8 x, struct bits8 y){
 }
 
 
-
 struct bits8 bits8_negate(struct bits8 x){
-    return bits8_add(bits8_not(x), 1);
+    return bits8_add(bits8_not(x), bits8_from_int(1));
 }
 
-struct bits8 bits8_mul(struct bits8 x, struct bits8 y);
+struct bits8 bits8_mul(struct bits8 x, struct bits8 y){
+        
+}
 
