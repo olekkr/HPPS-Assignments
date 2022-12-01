@@ -20,8 +20,13 @@ struct bits8 test2 = {
 int main() {
     struct bits8 bits = bits8_not(test1);
     bits8_print(bits);
-    bits8_print(bits8_from_int(2));
+    printf("\n");
+    bits8_print(bits8_from_int((unsigned int)2));
 
-    printf("%b", bits8_to_int(test2));
+    printf("\n");
+    printf("%d", bits8_to_int(test2));
+    
+    printf("\n\n");
+    bits8_print(bits8_add(test2, test1));
 
 }

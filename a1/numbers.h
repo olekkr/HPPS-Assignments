@@ -112,16 +112,60 @@ unsigned int bits8_to_int(struct bits8 x){
 }
 
 void bits8_print(struct bits8 a){
-    printf("\n0b%u%u%u%u%u%u%u%u\n", a.b7.v, a.b6.v, a.b5.v, a.b4.v, a.b3.v, a.b2.v, a.b1.v, a.b0.v);
+    bit_print(a.b7);
+    bit_print(a.b6);
+    bit_print(a.b5);
+    bit_print(a.b4);
+    bit_print(a.b3);
+    bit_print(a.b2);
+    bit_print(a.b1);
+    bit_print(a.b0);
 }
+
+struct add_result {
+    struct bit s;
+    struct bit c;
+};
+
+
+struct add_result full_add(struct bit a, struct bit b, struct bit carry_prev){
+    struct add_result res;
+    res.s = bit_xor(a, bit_xor(b, carry_prev));
+    res.c = bit_or(bit_and(a, b), bit_and(carry_prev, bit_or(a, b)));
+    return res;
+}
+
 struct bits8 bits8_add(struct bits8 x, struct bits8 y){
-    struct bits8 carry = bits8_and(x,y);
-    struct bits8 shifted_c = bits8_from_int(bits8_to_int * 2);
+    struct bits8 acc;
+    struct bit c0 = {false};
 
+    struct add_result res0 = full_add(x.b0, y.b0, c0);
+    struct add_result res1 = full_add(x.b1, y.b1, res0.c);
+    struct add_result res2 = full_add(x.b2, y.b2, res1.c);
+    struct add_result res3 = full_add(x.b3, y.b3, res3.c);
+    struct add_result res4 = full_add(x.b4, y.b4, res4.c);
+    struct add_result res5 = full_add(x.b5, y.b5, res5.c);
+    struct add_result res6 = full_add(x.b6, y.b6, res6.c);
+    struct add_result res7 = full_add(x.b7, y.b7, res7.c);
+    
+    acc.b0 = res0.s;
+    acc.b1 = res1.s;
+    acc.b2 = res2.s;
+    acc.b3 = res3.s;
+    acc.b4 = res4.s;
+    acc.b5 = res5.s;
+    acc.b6 = res6.s;
+    acc.b7 = res7.s;
+
+    return acc;
 
 }
 
-struct bits8 bits8_negate(struct bits8 x);
+
+
+struct bits8 bits8_negate(struct bits8 x){
+    return bits8_add(bits8_not(x), 1);
+}
 
 struct bits8 bits8_mul(struct bits8 x, struct bits8 y);
 
