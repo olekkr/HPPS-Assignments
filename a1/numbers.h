@@ -54,7 +54,7 @@ unsigned int bits8_to_int(struct bits8 x){
     acc += x.b3.v*8;
     acc += x.b4.v*16;
     acc += x.b5.v*32;
-    acc += x.b6.v*62;
+    acc += x.b6.v*64;
     acc += x.b7.v*128;
     return acc;
 }
@@ -114,6 +114,7 @@ struct bits8 bits8_negate(struct bits8 x){
 }
 
 struct bits8 bits8_mul(struct bits8 x, struct bits8 y){
-    
+    struct bits8 a;
+    return a;
 }
 
