@@ -26,7 +26,7 @@ int main() {
     printf("\n");
     printf("%d", bits8_to_int(test2));
     
-    printf("\n\n");
+    printf("\n");
     bits8_print(bits8_add(test2, test1));
 
 }

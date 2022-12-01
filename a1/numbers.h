@@ -13,7 +13,6 @@ struct bits8 {
 };
 
 
-
 //########### helper functions ##########
 unsigned int digit_at(unsigned int number, unsigned int digit_idx){
     return (number >> digit_idx) % 2;
@@ -113,7 +112,6 @@ struct bits8 bits8_add(struct bits8 x, struct bits8 y){
     acc.b7 = res7.s;
 
     return acc;
-
 }
 
 
@@ -122,6 +120,6 @@ struct bits8 bits8_negate(struct bits8 x){
 }
 
 struct bits8 bits8_mul(struct bits8 x, struct bits8 y){
-        
+    
 }
 
