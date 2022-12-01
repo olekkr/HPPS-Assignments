@@ -96,11 +96,11 @@ struct bits8 bits8_add(struct bits8 x, struct bits8 y){
     struct add_result res0 = full_add(x.b0, y.b0, c0);
     struct add_result res1 = full_add(x.b1, y.b1, res0.c);
     struct add_result res2 = full_add(x.b2, y.b2, res1.c);
-    struct add_result res3 = full_add(x.b3, y.b3, res3.c);
-    struct add_result res4 = full_add(x.b4, y.b4, res4.c);
-    struct add_result res5 = full_add(x.b5, y.b5, res5.c);
-    struct add_result res6 = full_add(x.b6, y.b6, res6.c);
-    struct add_result res7 = full_add(x.b7, y.b7, res7.c);
+    struct add_result res3 = full_add(x.b3, y.b3, res2.c);
+    struct add_result res4 = full_add(x.b4, y.b4, res3.c);
+    struct add_result res5 = full_add(x.b5, y.b5, res4.c);
+    struct add_result res6 = full_add(x.b6, y.b6, res5.c);
+    struct add_result res7 = full_add(x.b7, y.b7, res6.c);
     
     acc.b0 = res0.s;
     acc.b1 = res1.s;
