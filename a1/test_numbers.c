@@ -6,7 +6,6 @@ int test_on_domain(int a, bool(*test)(unsigned char)){
     for (int i = 0; i < 256; i++){
         if ( !(test)((unsigned char)i) ){
             fails += 1;
-            //printf("%d\n", i);
         }
     }
     return fails;
@@ -18,7 +17,6 @@ int test_on_domain2(int a, bool(*test)(unsigned char, unsigned char)){
         for (int i = 0; i < a; i++){
             if (!(test)((unsigned char)i, (unsigned char)ii)){
                 fails += 1;
-                //printf("%d, %d\n", i, ii);
             }
         }
     }
