@@ -49,8 +49,8 @@ bool test_multiplication(unsigned char n, unsigned char nn){
 
 int main() {
     printf("testing conversions ... finshed with %d failures.\n", test_on_domain(0, 255, test_conversion)); 
-    printf("testing addition ... finshed with %d failures.\n", test_on_domain2(0, 64, test_addition));
-    printf("testing addition- ... finshed with %d failures.\n", test_on_domain2(0, 64, test_minus));
+    printf("testing addition ... finshed with %d failures.\n", test_on_domain2(0, 128, test_addition));
+    printf("testing addition- ... finshed with %d failures.\n", test_on_domain2(0, 255, test_minus));
     printf("testing negation ... finshed with %d failures.\n", test_on_domain(0, 256, test_negation));
     printf("testing negation- ... finshed with %d failures.\n", test_on_domain(-256, 0, test_negation));
     // might not work due to overflows.
