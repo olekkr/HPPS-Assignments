@@ -28,8 +28,9 @@ bool test_conversion(unsigned char n){
 }
 
 bool test_addition(unsigned char n, unsigned char nn){
-    return (n + nn) == bits8_to_int(bits8_add(bits8_from_int(n), bits8_from_int(nn)));
-}
+    bool b = (n + nn) == bits8_to_int(bits8_add(bits8_from_int(n), bits8_from_int(nn)));
+    return b
+    }
 
 bool test_negation(unsigned char n){
     signed char a = -((signed char)n) ;
