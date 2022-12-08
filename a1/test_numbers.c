@@ -46,6 +46,9 @@ bool test_multiplication(unsigned char n, unsigned char nn){
     return bits8_to_int(bits8_mul(bits8_from_int(n), bits8_from_int(nn))) == n * nn;
 }
 
+bool test_multiplication_minus(unsigned char n, unsigned char nn){
+    return bits8_to_int(bits8_mul(bits8_from_int(n), bits8_negate(bits8_from_int(nn)))) == n * -nn;
+}
 
 int main() {
     printf("testing conversions ... finshed with %d failures.\n", test_on_domain(0, 255, test_conversion)); 
@@ -54,8 +57,8 @@ int main() {
     printf("testing negation ... finshed with %d failures.\n", test_on_domain(0, 256, test_negation));
     printf("testing negation- ... finshed with %d failures.\n", test_on_domain(-256, 0, test_negation));
     // might not work due to overflows.
-    printf("testing multiplication ... finshed with %d failures.\n", test_on_domain2(0, 256, test_multiplication));
-    printf("testing multiplication-... finshed with %d failures.\n", test_on_domain2(-256, 0, test_multiplication));
+    printf("testing multiplication ... finshed with %d failures.\n", test_on_domain2(0, 16, test_multiplication));
+    printf("testing multiplication-... finshed with %d failures.\n", test_on_domain2(0, 16, test_multiplication));
 
-    //test_on_domain(128, test_negation);
+    bits8_mul(bits8_from_int(5), bits8_from_int(2));
 }

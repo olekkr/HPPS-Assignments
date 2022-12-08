@@ -113,8 +113,43 @@ struct bits8 bits8_negate(struct bits8 x){
     return bits8_add(bits8_not(x), bits8_from_int(1));
 }
 
-struct bits8 bits8_mul(struct bits8 x, struct bits8 y){
-    struct bits8 a;
-    return a;
+struct bits8 bit_exp2(struct bit d, int e){
+    int num = bit_to_int(d) << e;
+    return bits8_from_int(num);
+}
+struct bits8 bits8_exp2(struct bits8 d, int e){
+    int num = bits8_to_int(d) << e;
+    return bits8_from_int(num);
+}
+struct bits8 mul_digit(struct bit bit, int e, struct bits8 A){
+    struct bits8 acc = bits8_from_int(0);
+
+    //bit_print(bit);
+
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b0, bit), 0));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b1, bit), 1));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b2, bit), 2));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b3, bit), 3));
+
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b4, bit), 4));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b5, bit), 5));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b6, bit), 6));
+    acc = bits8_add(acc, bit_exp2(bit_and(A.b7, bit), 7));
 }
 
+struct bits8 bits8_mul(struct bits8 x, struct bits8 y){
+    struct bits8 acc = bits8_from_int(0);
+    
+    acc = bits8_add(bits8_exp2(mul_digit(x.b0, 0, y), 0), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b2, 2, y), 2), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b1, 1, y), 1), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b3, 3, y), 3), acc);
+
+    acc = bits8_add(bits8_exp2(mul_digit(x.b4, 4, y), 4), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b5, 5, y), 5), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b6, 6, y), 6), acc);
+    acc = bits8_add(bits8_exp2(mul_digit(x.b7, 7, y), 7), acc);
+
+
+    return acc;
+}
