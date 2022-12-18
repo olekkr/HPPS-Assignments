@@ -18,7 +18,7 @@ int* knn(int k, int d, int n, const double *points, const double* query) {
   // måske skal n forbindes med candidates på en anden måde. forud for loopet nednefor.
 
   for (int candidate = 0; candidate < n; candidate ++) {
-    insert_if_closer(k, d, points, closest,  query, candidate);
+    insert_if_closer(k, d, points, closest,  query, points[candidate]);
   }
   return closest;
 }

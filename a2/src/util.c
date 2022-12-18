@@ -27,13 +27,13 @@ int insert_if_closer(int k, int d,
 
   candDist = distance(d, query, &points[candidate]);
 
-  for(int i = 1; i <= k; i ++){
+  for(int i = 0; i <= k; i ++){
     if (closest[i] == -1) {
         closest[i] = candidate;
 
       return(1);
     }
-    candDist = distance(d, query, &points[closest[i]]);
+    candDist = distance(d, query, &points[closest[i]*d]);
 
     if (candDist < closest[candidate]){
         for (int j = k-1; j<= i; j--)  {
