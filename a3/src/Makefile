@@ -36,13 +36,13 @@ clean:
 	rm -rf core *.o $(PROGRAMS)
 
 planet.tsv.gz: 
-	wget https://github.com/OSMNames/OSMNames/releases/download/v2.0.4/planet-latest_geonames.tsv.gz -o planet.tsv.gz
+	curl https://github.com/OSMNames/OSMNames/releases/download/v2.0.4/planet-latest_geonames.tsv.gz > planet.tsv.gz
 
 planet.tsv: planet.tsv.gz
 	gunzip planet.tsv.gz
 
 dnk.tsv: planet.tsv.gz
-	zcat planet.tsv.gz | awk -F '\t' -v OFS='\t' 'NR == 1 || $$16 == "dnk"' > denmark.tsv
+	zcat planet.tsv.gz | awk -F '\t' -v OFS='\t' 'NR == 1 || $$16 == "dk"' > dnk.tsv
 
 ../src.zip:
 	make clean
