@@ -48,9 +48,12 @@ void free_index(struct index_data* data) {
 }
 
 const struct index_record* bin_search (struct index_record* index_set, int set_len, int64_t target){
+    if (set_len == 0){return NULL;}
     int64_t middle_element = index_set[set_len/2].osm_id;
-
-    if (set_len <= 1){return NULL;}
+    if (middle_element == target){
+        return &index_set[set_len/2];
+    }
+    if (set_len == 1){return NULL;}
     if (middle_element > target){
         // left (lesser) half
         return bin_search(index_set, set_len/2, target);
@@ -59,23 +62,19 @@ const struct index_record* bin_search (struct index_record* index_set, int set_l
         // right (greater) half
         return bin_search(&index_set[set_len/2], set_len-(set_len/2), target);
     }
-
-    if (middle_element == target){
-        return &index_set[set_len/2];
-    }
-    else {
-        assert(0);
-    }
-
-
+    return NULL;
 }
 
 const struct record* lookup_index(struct index_data *data, int64_t needle) {
     int n = data->n;
     struct index_record* ids = data->ids;
-    
-    return bin_search(ids, n, needle)->record;
-
+    const struct index_record* result = bin_search(ids, n, needle);
+    if(result){
+        return result->record;
+    }
+    else{
+        return NULL;
+    }
 }
 
 int main(int argc, char** argv) {
