@@ -44,6 +44,10 @@ planet.tsv: planet.tsv.gz
 dnk.tsv: planet.tsv.gz
 	zcat planet.tsv.gz | awk -F '\t' -v OFS='\t' 'NR == 1 || $$16 == "dk"' > dnk.tsv
 
+dnk.tsv: dnk.tsv
+	head -n 2001 dnk.tsv > dnk2k.tsv
+	
+
 ../src.zip:
 	make clean
 	cd .. && zip src.zip -r src
