@@ -24,6 +24,7 @@ struct index_record {
 //  const char *type;
 //  double lon;
 //  double lat;
+// etc.....
 // So huge...
 // Think about the "stride" (stepsize, when you traverse it) is
 // vs a tiny index_record
