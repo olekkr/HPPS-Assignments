@@ -53,7 +53,7 @@ const struct index_record* bin_search (struct index_record* index_set, int set_l
     if (middle_element == target){
         return &index_set[set_len/2];
     }
-    if (set_len == 1){return NULL;}
+    if (set_len == 1){return NULL;} // possibly extraneous controlflow
     if (middle_element > target){
         // left (lesser) half
         return bin_search(index_set, set_len/2, target);
