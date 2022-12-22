@@ -6,6 +6,9 @@
 #include <errno.h>
 #include <assert.h>
 
+#include <float.h> //for LDBL_MAX
+#include <math.h> 
+
 #include "record.h"
 #include "coord_query.h"
 
@@ -15,18 +18,33 @@ struct naive_data {
 };
 
 struct naive_data* mk_naive(struct record* rs, int n) {
-  assert(0);
-  // TODO
+  struct naive_data* nd = malloc(sizeof(struct naive_data));
+  nd->rs = rs;
+  nd->n =  n;
+  return nd;
 }
 
 void free_naive(struct naive_data* data) {
-  assert(0);
-  // TODO
+  free(data->rs);
+  free(data);
 }
 
+
+// lon and lat has beend flipped for some reason???
 const struct record* lookup_naive(struct naive_data *data, double lon, double lat) {
-  assert(0);
-  // TODO
+  int n = data->n;
+  struct record* rs = data->rs;
+  long double cand_dist = LDBL_MAX;
+  struct record* cand = NULL;
+
+  for(int i=0; i < n; i++){
+      long double sq_dist = pow(rs[i].lon - lat, 2) + pow(rs[i].lat - lon, 2);
+      if (sq_dist < cand_dist){
+          cand_dist = sq_dist;
+          cand = &rs[i];
+      }
+  }
+  return cand;
 }
 
 int main(int argc, char** argv) {
