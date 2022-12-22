@@ -31,12 +31,10 @@ const struct record* lookup_naive(struct naive_data *data, int64_t needle) {
   const struct record* rs = data->rs;
   int n = data->n;
 
-  struct record* result = malloc(sizeof(const struct record));
   
   for(int i = 0; i<n; i++){
       if(rs[i].osm_id == needle){
-          memcpy(result, &rs[i], sizeof(struct record));
-          return result;
+          return &rs[i];
       }
   }
   return NULL;
